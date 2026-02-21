@@ -1,9 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider, createRouter } from '@tanstack/react-router';
+import { Buffer } from 'buffer';
+import process from 'process';
 import { routeTree } from './routeTree';
 import './styles/app.css';
 import { registerServiceWorker } from './services/offline';
+
+if (!globalThis.Buffer) {
+  globalThis.Buffer = Buffer;
+}
+
+if (!globalThis.process) {
+  globalThis.process = process;
+}
 
 const router = createRouter({
   routeTree,
