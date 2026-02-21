@@ -9,7 +9,7 @@ function App() {
 
   return (
     <>
-      <div>
+      <div className='flex justify-center'>
         <a href="https://vite.dev" target="_blank">
           <img src={appLogo} className="logo" alt="vite-pwa logo" />
         </a>
