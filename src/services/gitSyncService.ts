@@ -1,6 +1,6 @@
 import git from 'isomorphic-git';
 import http from 'isomorphic-git/http/web';
-import LightningFS from 'lightning-fs';
+import LightningFS from '@isomorphic-git/lightning-fs';
 import { get, set } from 'idb-keyval';
 
 type CloneRepositoryInput = {
