@@ -1,0 +1,29 @@
+{
+  "name": "mx-open-gym-tracker",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@tanstack/react-router": "^1.116.0",
+    "idb-keyval": "^6.2.1",
+    "isomorphic-git": "^1.29.0",
+    "@isomorphic-git/lightning-fs": "^4.6.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "buffer": "^6.0.3",
+    "process": "^0.11.10"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.3",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.10"
+  }
+}
