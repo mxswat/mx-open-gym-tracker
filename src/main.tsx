@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom/client';
 import { RouterProvider, createRouter } from '@tanstack/react-router';
 import { Buffer } from 'buffer';
 import process from 'process';
+import { registerSW } from 'virtual:pwa-register';
 import { routeTree } from './routeTree';
 import './styles/app.css';
-import { registerServiceWorker } from './services/offline';
 
 if (!globalThis.Buffer) {
   globalThis.Buffer = Buffer;
@@ -29,7 +29,9 @@ declare module '@tanstack/react-router' {
   }
 }
 
-registerServiceWorker();
+registerSW({
+  immediate: true,
+});
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
