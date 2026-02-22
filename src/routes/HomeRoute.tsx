@@ -1,35 +1,26 @@
-const starterCards = [
+const cards = [
   {
-    title: 'Program Builder',
-    body: 'Model cycles, deloads, and progression once your UX is defined.',
+    title: 'Router is back',
+    body: 'This page renders through TanStack Router and the shared layout.',
   },
   {
-    title: 'Workout Capture',
-    body: 'Track sets/reps/weights with quick-entry flows designed for gym use.',
+    title: 'PWA still intact',
+    body: 'We can wire the rest of the app back in without losing the Vite PWA setup.',
   },
-  {
-    title: 'Progress Review',
-    body: 'See trends and PRs while offline and sync snapshots to git later.',
-  },
-];
+]
 
 export function HomeRoute() {
   return (
-    <section>
-      <h2>Project Foundation Ready</h2>
-      <p>
-        This starter app uses TanStack Router, local-first storage hooks, and a
-        headless git service so we can iterate on the exact UI/UX you share next.
-      </p>
-
-      <div className="card-grid">
-        {starterCards.map((card) => (
-          <article key={card.title} className="card">
-            <h3>{card.title}</h3>
+    <section className="space-y-4">
+      <h2 className="text-2xl font-medium">Dashboard</h2>
+      <div className="grid gap-3">
+        {cards.map((card) => (
+          <article key={card.title} className="rounded border p-4 text-left">
+            <h3 className="font-semibold">{card.title}</h3>
             <p>{card.body}</p>
           </article>
         ))}
       </div>
     </section>
-  );
+  )
 }

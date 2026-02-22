@@ -1,62 +1,49 @@
-import { FormEvent, useMemo, useState } from 'react';
-import { GitSyncService } from '../services/gitSyncService';
+import { type FormEvent, useState } from 'react'
 
 export function SyncRoute() {
-  const gitSync = useMemo(() => new GitSyncService(), []);
-  const [remoteUrl, setRemoteUrl] = useState('');
-  const [branch, setBranch] = useState('main');
-  const [status, setStatus] = useState('Idle');
+  const [remoteUrl, setRemoteUrl] = useState('')
+  const [branch, setBranch] = useState('main')
+  const [status, setStatus] = useState('Idle')
 
-  async function handleClone(event: FormEvent) {
-    event.preventDefault();
-
-    setStatus('Cloning...');
-    try {
-      await gitSync.cloneRepository({
-        remoteUrl,
-        branch,
-        dir: '/gym-data',
-      });
-      setStatus('Clone complete.');
-    } catch (error) {
-      setStatus(error instanceof Error ? error.message : 'Clone failed');
-    }
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    setStatus(`Ready to sync ${remoteUrl || '(missing remote)'} on ${branch}`)
   }
 
   return (
-    <section>
-      <h2>Headless Git Sync</h2>
-      <p>
-        Connect to a remote git repository without shelling out to the system git
-        binary. This mirrors Obsidian-style repository sync workflows.
-      </p>
+    <section className="space-y-4">
+      <h2 className="text-2xl font-medium">Repository Sync</h2>
+      <p className="opacity-80">Placeholder form while we rebuild the full sync workflow.</p>
 
-      <form onSubmit={handleClone} className="sync-form">
-        <label>
+      <form onSubmit={handleSubmit} className="grid gap-3 text-left">
+        <label className="grid gap-1">
           Remote URL
           <input
             type="url"
             value={remoteUrl}
             onChange={(event) => setRemoteUrl(event.target.value)}
-            required
+            className="rounded border px-3 py-2"
             placeholder="https://github.com/org/repo.git"
           />
         </label>
 
-        <label>
+        <label className="grid gap-1">
           Branch
           <input
             type="text"
             value={branch}
             onChange={(event) => setBranch(event.target.value)}
+            className="rounded border px-3 py-2"
             placeholder="main"
           />
         </label>
 
-        <button type="submit">Clone Repository</button>
+        <button type="submit" className="w-fit rounded border px-4 py-2">
+          Save draft sync config
+        </button>
       </form>
 
-      <p className="status">Status: {status}</p>
+      <p>Status: {status}</p>
     </section>
-  );
+  )
 }

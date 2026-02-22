@@ -1,19 +1,39 @@
-import { defineConfig } from "vite";
-import tailwindcss from "@tailwindcss/vite";
-import react from "@vitejs/plugin-react";
+import { VitePWA } from 'vite-plugin-pwa';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
 
+
+// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
-  resolve: {
-    alias: {
-      buffer: "buffer",
-      process: "process/browser",
+  plugins: [react(), tailwindcss(), 
+    VitePWA({
+    registerType: 'autoUpdate',
+    injectRegister: false,
+
+    pwaAssets: {
+      disabled: false,
+      config: true,
     },
-  },
-  define: {
-    global: "globalThis",
-  },
-  optimizeDeps: {
-    include: ["buffer", "process"],
-  },
-});
+
+    manifest: {
+      name: 'Mx Open Gym Tracker',
+      short_name: 'Mx Open Gym Tracker',
+      description: 'Open-source headless gym tracker',
+      theme_color: '#42b883',
+    },
+
+    workbox: {
+      globPatterns: ['**/*.{js,css,html,svg,png,ico}'],
+      cleanupOutdatedCaches: true,
+      clientsClaim: true,
+    },
+
+    devOptions: {
+      enabled: false,
+      navigateFallback: 'index.html',
+      suppressWarnings: true,
+      type: 'module',
+    },
+  })],
+})
